@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 
@@ -39,7 +39,7 @@ const Doctors = () => {
                     {
                         fillterDoc.map((item,index)=>(
                             <div onClick={()=>navigate('/appointmant/${item._id}')} className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500'>
-                                <img className='bg-blue-50' src="item.image" alt="" />
+                                <img className='bg-blue-50' src={item.image} alt="" />
                                 <div className='p-4'>
                                     <div className='flex items-center gap-2 text-sm text-center text-green-500'>
                                         <p className='w-2 h-2 bg-green-500 rounded-full'></p><p>Available</p>

@@ -32,6 +32,7 @@ const Footer = () => {
             </ul>
         </div>
       </div>
+      
       {/* --------- Copyright Text --------- */}
       <div>
         <hr />
