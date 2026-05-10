@@ -38,9 +38,6 @@ const Footer = () => {
         <hr />
         <p className='py-5 text-sm text-center'>This website was made by Phan Thi Khanh Ly and Nguyen Thi Minh Hau</p>
       </div>
-      <div className='text-xl my-4'>
-        <p>WHY <span className='text-gray-700 font-semibold'>CHOOSE US</span></p>
-      </div>
     </div>
 
   )
