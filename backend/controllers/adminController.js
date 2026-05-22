@@ -1,6 +1,6 @@
 import { response } from "express"
 import validator from "validator"
-import bycript from 'bcrypt'
+import bcrypt from 'bcrypt'
 import {v2 as cloudinary} from "cloudinary"
 import doctorModel from "../models/doctorModel.js"
 import jwt from 'jsonwebtoken'
@@ -28,8 +28,8 @@ const addDoctor = async(req, res) => {
         }
 
         //hashing doctor password
-        const salt = await bycript.genSalt(10)
-        const hasedPassword = await bycript.hash(password, salt)
+        const salt = await bcrypt.genSalt(10)
+        const hasedPassword = await bcrypt.hash(password, salt)
 
         //upload image to cloudinary
         const imageUpload = await cloudinary.uploader.upload(imageFile.path, {resource_type:"image"})
@@ -39,7 +39,7 @@ const addDoctor = async(req, res) => {
             name,
             email,
             image:imageUrl,
-            password:hasedPassword,
+            password: hasedPassword,
             speciality,
             degree,
             experience,
@@ -52,7 +52,7 @@ const addDoctor = async(req, res) => {
         const newDoctor = new doctorModel (doctorData)
         await newDoctor.save()
 
-        res.json({success:true, message:"Doctor addeed"})
+        res.json({success:true, message:"Doctor added"})
 
     } catch (error) {
         console.log(error)
@@ -81,4 +81,17 @@ const loginAdmin = async (req,res) => {
     }
 }
 
-export {addDoctor, loginAdmin}
+// API to get all doctors list for admin panel
+const allDoctors = async (req,res) => {
+    try {
+
+        const doctors = await doctorModel.find({}).select('-password')
+        res.json({success:true,doctors})
+        
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:error.message})
+    }
+}
+
+export {addDoctor, loginAdmin, allDoctors}
