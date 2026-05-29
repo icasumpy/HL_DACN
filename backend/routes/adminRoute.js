@@ -12,5 +12,6 @@ adminRouter.post('/all-doctors',authAdmin,addDoctors)
 adminRouter.post('/change-availability',authAdmin,changeAvailablity)
 adminRouter.get('/appointments',authAdmin,appointmentsAdmin)
 adminRouter.post('/cancel-appointment',authAdmin,appointmentCancel)
+adminRouter.get('/dashboard',authAdmin,adminDashboard)
 
 export default adminRouter
